@@ -1,333 +1,185 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import LucideIcon from './LucideIcon';
-import { TRANSLATIONS } from '../translations';
+import { useState } from 'react';
 
-export default function Contact({ darkMode, language }) {
-  const t = TRANSLATIONS[language];
+const Contact = () => {
+  const [showModal, setShowModal] = useState(false);
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const name = event.target['contact-name'].value;
+    const email = event.target['contact-email'].value;
+    const project = event.target['contact-project'].value;
+    const message = event.target['contact-message'].value;
 
-  const [status, setStatus] = useState('idle');
-  const [errors, setErrors] = useState({});
+    const mailtoSubject = encodeURIComponent(`Project Inquiry: ${project} - ${name}`);
+    const mailtoBody = encodeURIComponent(
+        `Hello AnanTechsol Studio,\n\nName: ${name}\nEmail: ${email}\nSelected Package / Project Type: ${project}\n\nProject Scope & Message:\n${message}\n\nBest regards,\n${name}`
+    );
 
-  const validateForm = () => {
-    const tempErrors = {};
-    if (!formData.name.trim()) {
-      tempErrors.name = language === 'en' ? 'Please enter your name.' : 'कृपया अपना नाम दर्ज करें।';
-    }
-    if (!formData.email.trim()) {
-      tempErrors.email = language === 'en' ? 'Please enter your email.' : 'कृपया अपना ईमेल पता दर्ज करें।';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      tempErrors.email = language === 'en' ? 'Please enter a valid email address.' : 'कृपया एक मान्य ईमेल पता दर्ज करें।';
-    }
-    if (!formData.message.trim()) {
-      tempErrors.message = language === 'en' ? 'Please write a message description.' : 'कृपया एक संदेश विवरण लिखें।';
-    }
-    setErrors(tempErrors);
-    return Object.keys(tempErrors).length === 0;
+    // Open mailto URL
+    window.location.href = `mailto:anantechsol@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+    // Show modal
+    setShowModal(true);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear errors as user types
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-
-    setStatus('submitting');
-
-    // Simulate server post
-    setTimeout(() => {
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-    }, 1200);
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   return (
-    <section
-      id="contact"
-      className={`relative py-20 sm:py-28 overflow-hidden transition-colors duration-300 ${
-        darkMode ? 'bg-slate-900 text-white' : 'bg-white text-slate-900'
-      }`}
-    >
-      <div className="absolute right-0 bottom-0 w-[400px] h-[400px] bg-indigo-500/5 rounded-full filter blur-[150px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+    <>
+      <section id="contact" className="py-24 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Left Info Column */}
-          <div className="lg:col-span-5 space-y-8" id="contact-info">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <span className="h-px w-8 bg-indigo-500" />
-                <span className="text-sm font-semibold tracking-wider text-indigo-500 uppercase font-mono">
-                  {t.contact.tag}
-                </span>
-              </div>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-                {t.contact.title}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            {/* Left Contact Overview */}
+            <div className="lg:col-span-5 reveal active">
+              <span className="text-blue-400 text-xs sm:text-sm font-semibold uppercase tracking-widest bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">Let's Connect</span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)] mt-4 font-heading leading-tight">
+                Have a project in mind? <br />Let's scope it out.
               </h2>
-              <p className={`text-base sm:text-lg leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                {t.contact.sub}
+              <p className="text-[var(--text-muted)] mt-4 text-base leading-relaxed">
+                Tell us what you're trying to build — we'll tell you honestly what it takes and what it costs.
               </p>
-            </div>
 
-            {/* Quick Contact Info blocks */}
-            <div className="space-y-6" id="contact-channels">
-              {/* Phone */}
-              <div className="flex gap-4 items-start group">
-                <div className={`flex items-center justify-center w-11 h-11 rounded-xl transition-colors ${
-                  darkMode ? 'bg-slate-800 text-cyan-400 group-hover:bg-slate-750' : 'bg-indigo-50 text-indigo-600 group-hover:bg-indigo-100'
-                }`}>
-                  <LucideIcon name="Phone" size={18} />
-                </div>
-                <div>
-                  <p className={`text-xs font-mono uppercase tracking-wider ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-                    {t.contact.phoneLabel}
-                  </p>
-                  <a
-                    href="tel:+919081460314"
-                    className={`text-base sm:text-lg font-bold hover:underline transition-colors ${
-                      darkMode ? 'text-white hover:text-cyan-300' : 'text-slate-900 hover:text-indigo-600'
-                    }`}
-                  >
-                    +91 90814 60314
-                  </a>
-                </div>
-              </div>
+              {/* Direct Contact Buttons */}
+              <div className="mt-8 space-y-4">
+                <a href="mailto:anantechsol@gmail.com" className="glass-card p-4 rounded-xl flex items-center gap-4 hover:border-blue-500/50 transition-all group">
+                  <div className="w-12 h-12 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                    <i className="fa-solid fa-envelope"></i>
+                  </div>
+                  <div>
+                    <span className="text-xs text-[var(--text-muted)] uppercase tracking-wider block font-medium">Email Us Directly</span>
+                    <span className="text-[var(--text-main)] font-semibold text-sm sm:text-base group-hover:text-blue-400 transition-colors">anantechsol@gmail.com</span>
+                  </div>
+                </a>
 
-              {/* Instagram */}
-              <div className="flex gap-4 items-start group">
-                <div className={`flex items-center justify-center w-11 h-11 rounded-xl transition-colors ${
-                  darkMode ? 'bg-slate-800 text-cyan-400 group-hover:bg-slate-750' : 'bg-indigo-50 text-indigo-600 group-hover:bg-indigo-100'
-                }`}>
-                  <LucideIcon name="Instagram" size={18} />
-                </div>
-                <div>
-                  <p className={`text-xs font-mono uppercase tracking-wider ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-                    {t.contact.emailLabel}
-                  </p>
-                  <a
-                    href="https://instagram.com/anantechsol"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`text-base sm:text-lg font-bold hover:underline transition-colors ${
-                      darkMode ? 'text-white hover:text-cyan-300' : 'text-slate-900 hover:text-indigo-600'
-                    }`}
-                  >
-                    @anantechsol
-                  </a>
-                </div>
-              </div>
+                <a href="https://instagram.com/anantechsol" target="_blank" rel="noopener noreferrer" className="glass-card p-4 rounded-xl flex items-center gap-4 hover:border-pink-500/50 transition-all group">
+                  <div className="w-12 h-12 rounded-lg bg-pink-500/10 border border-pink-500/20 text-pink-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                    <i className="fa-brands fa-instagram"></i>
+                  </div>
+                  <div>
+                    <span className="text-xs text-[var(--text-muted)] uppercase tracking-wider block font-medium">Follow / DM on Instagram</span>
+                    <span className="text-[var(--text-main)] font-semibold text-sm sm:text-base group-hover:text-pink-400 transition-colors">instagram.com/anantechsol</span>
+                  </div>
+                </a>
 
-              {/* Address */}
-              <div className="flex gap-4 items-start group">
-                <div className={`flex items-center justify-center w-11 h-11 rounded-xl transition-colors ${
-                  darkMode ? 'bg-slate-800 text-cyan-400 group-hover:bg-slate-750' : 'bg-indigo-50 text-indigo-600 group-hover:bg-indigo-100'
-                }`}>
-                  <LucideIcon name="MapPin" size={18} />
-                </div>
-                <div>
-                  <p className={`text-xs font-mono uppercase tracking-wider ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-                    {t.contact.locLabel}
-                  </p>
-                  <address className={`text-base font-semibold not-italic leading-relaxed ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
-                    {t.contact.officeText}
-                  </address>
+                <div className="glass-card p-4 rounded-xl flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center text-lg">
+                    <i className="fa-solid fa-location-dot"></i>
+                  </div>
+                  <div>
+                    <span className="text-xs text-[var(--text-muted)] uppercase tracking-wider block font-medium">Studio Base</span>
+                    <span className="text-[var(--text-main)] font-semibold text-sm sm:text-base">Surat, Gujarat, India</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Quick Notice Badge */}
-            <div className={`p-4 rounded-xl border text-xs font-mono leading-relaxed ${
-              darkMode ? 'bg-slate-950/40 border-slate-850 text-slate-400' : 'bg-slate-50 border-slate-200 text-slate-500'
-            }`}>
-              {language === 'en' 
-                ? "⚡ Typical response time is under 12 hours. Let's align your scope!" 
-                : "⚡ प्रतिक्रिया का समय आमतौर पर 12 घंटे से कम है। आइए आपके काम को शुरू करें!"}
+            {/* Right Contact Form */}
+            <div className="lg:col-span-7 reveal active">
+              <div className="glass-card rounded-3xl p-6 sm:p-10 border border-[var(--border-color)]/80 shadow-2xl relative">
+                
+                <h3 className="text-xl font-bold text-[var(--text-main)] font-heading mb-6 flex items-center gap-2">
+                  <i className="fa-solid fa-paper-plane text-blue-400 text-base"></i> Send Project Scope
+                </h3>
+
+                <form id="contact-form" onSubmit={handleFormSubmit} className="space-y-5">
+                  
+                  {/* Name & Email row */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label htmlFor="contact-name" className="block text-xs font-semibold uppercase text-[var(--text-muted)] mb-2">Your Name *</label>
+                      <input type="text" id="contact-name" name="contact-name" required placeholder="e.g. Rahul Patel" className="w-full px-4 py-3 rounded-xl bg-[var(--bg-main)]/80 border border-[var(--border-color)] text-[var(--text-main)] placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors text-sm" />
+                    </div>
+                    <div>
+                      <label htmlFor="contact-email" className="block text-xs font-semibold uppercase text-[var(--text-muted)] mb-2">Email Address *</label>
+                      <input type="email" id="contact-email" name="contact-email" required placeholder="name@company.com" className="w-full px-4 py-3 rounded-xl bg-[var(--bg-main)]/80 border border-[var(--border-color)] text-[var(--text-main)] placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors text-sm" />
+                    </div>
+                  </div>
+
+                  {/* Selected Package / Project Type */}
+                  <div>
+                    <label htmlFor="contact-project" className="block text-xs font-semibold uppercase text-[var(--text-muted)] mb-2">Project Type or Package *</label>
+                    <select id="contact-project" name="contact-project" required defaultValue="" className="w-full px-4 py-3 rounded-xl bg-[var(--bg-main)]/90 border border-[var(--border-color)] text-[var(--text-main)] focus:outline-none focus:border-blue-500 transition-colors text-sm">
+                      <option value="" disabled>Select service or package...</option>
+                      <optgroup label="Web Development">
+                        <option value="Web Dev - Starter (₹7,999)">Web Dev - Starter (₹7,999)</option>
+                        <option value="Web Dev - Business (₹17,999)">Web Dev - Business (₹17,999)</option>
+                        <option value="Web Dev - Premium (₹34,999)">Web Dev - Premium (₹34,999)</option>
+                      </optgroup>
+                      <optgroup label="E-Commerce Store">
+                        <option value="E-Commerce - Starter (₹14,999)">E-Commerce - Starter (₹14,999)</option>
+                        <option value="E-Commerce - Growth (₹29,999)">E-Commerce - Growth (₹29,999)</option>
+                        <option value="E-Commerce - Enterprise (₹59,999)">E-Commerce - Enterprise (₹59,999)</option>
+                      </optgroup>
+                      <optgroup label="School ERP (ShikshaNetra)">
+                        <option value="School ERP - Basic (₹22,000/yr)">School ERP - Basic (₹22,000/yr)</option>
+                        <option value="School ERP - Super (₹35,000/yr)">School ERP - Super (₹35,000/yr)</option>
+                        <option value="School ERP - Enterprise">School ERP - Multi-Branch Enterprise</option>
+                      </optgroup>
+                      <optgroup label="HR Software">
+                        <option value="HR Software - Small Business (₹9,999/yr)">HR - Small Business (₹9,999/yr)</option>
+                        <option value="HR Software - Business (₹19,999/yr)">HR - Business (₹19,999/yr)</option>
+                        <option value="HR Software - Enterprise (₹39,999/yr)">HR - Enterprise (₹39,999/yr)</option>
+                      </optgroup>
+                      <optgroup label="Custom Dev">
+                        <option value="Custom Dev - MVP Build (₹24,999+)">Custom MVP Build (₹24,999+)</option>
+                        <option value="Custom Dev - Full Product (₹59,999+)">Custom Full Product (₹59,999+)</option>
+                        <option value="Custom Dev - Enterprise Quote">Custom Enterprise Build</option>
+                      </optgroup>
+                      <option value="Other / General Query">Other / Custom Inquiry</option>
+                    </select>
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <label htmlFor="contact-message" className="block text-xs font-semibold uppercase text-[var(--text-muted)] mb-2">Message / Scope Details *</label>
+                    <textarea id="contact-message" name="contact-message" required rows="4" placeholder="Describe what you want to build, timeline, or any specific requirements..." className="w-full px-4 py-3 rounded-xl bg-[var(--bg-main)]/80 border border-[var(--border-color)] text-[var(--text-main)] placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors text-sm resize-none"></textarea>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button type="submit" className="w-full py-4 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-[var(--text-main)] font-bold text-sm tracking-wide shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 hover:scale-[1.01] transition-all duration-200 flex items-center justify-center gap-2">
+                    <span>Get My Quote & Scope</span>
+                    <i className="fa-solid fa-paper-plane text-xs"></i>
+                  </button>
+
+                  <p className="text-center text-[11px] text-[var(--text-muted)]">
+                    Submitting opens your email client directly pre-filled with anantechsol@gmail.com.
+                  </p>
+                </form>
+
+              </div>
             </div>
-          </div>
 
-          {/* Right Form Card */}
-          <div className="lg:col-span-7" id="contact-form-container">
-            <div className={`p-6 sm:p-10 rounded-3xl border transition-colors ${
-              darkMode ? 'bg-slate-950/60 border-slate-800' : 'bg-slate-50 border-slate-200/80 shadow-md'
-            }`}>
-              <AnimatePresence mode="wait">
-                {status === 'success' ? (
-                  <motion.div
-                    key="success"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="text-center py-10 space-y-6"
-                    id="contact-success-box"
-                  >
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 mb-2">
-                      <LucideIcon name="CheckCircle2" size={32} />
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <h3 className={`font-display text-2xl font-bold tracking-tight ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                        {language === 'en' ? 'Message Received!' : 'संदेश प्राप्त हुआ!'}
-                      </h3>
-                      <p className={`text-sm sm:text-base ${darkMode ? 'text-slate-400' : 'text-slate-600'} max-w-md mx-auto`}>
-                        {t.contact.formSuccess}
-                      </p>
-                    </div>
-
-                    <button
-                      onClick={() => setStatus('idle')}
-                      className="inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-500 transition-colors shadow-md shadow-indigo-600/10 cursor-pointer"
-                    >
-                      {language === 'en' ? 'Send Another Message' : 'दूसरा संदेश भेजें'}
-                    </button>
-                  </motion.div>
-                ) : (
-                  <motion.form
-                    key="form"
-                    onSubmit={handleSubmit}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="space-y-6"
-                    noValidate
-                    id="contact-form"
-                  >
-                    {/* Name */}
-                    <div>
-                      <label htmlFor="name" className={`block text-xs font-mono uppercase tracking-wider font-semibold mb-2 ${
-                        darkMode ? 'text-slate-400' : 'text-slate-600'
-                      }`}>
-                        {t.contact.formName}
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        placeholder={language === 'en' ? 'e.g. Arpan Patel' : 'जैसे. अर्पण पटेल'}
-                        disabled={status === 'submitting'}
-                        className={`w-full px-4.5 py-3.5 rounded-xl border text-sm transition-all outline-none focus:ring-2 focus:ring-indigo-500/20 ${
-                          errors.name
-                            ? 'border-rose-500 bg-rose-500/5'
-                            : darkMode
-                              ? 'border-slate-850 bg-slate-900 text-white focus:border-indigo-500'
-                              : 'border-slate-300 bg-white text-slate-900 focus:border-indigo-600'
-                        }`}
-                      />
-                      {errors.name && (
-                        <p className="text-rose-500 text-xs font-mono mt-1.5 flex items-center gap-1">
-                          <span className="w-1 h-1 rounded-full bg-rose-500 inline-block" />
-                          {errors.name}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <label htmlFor="email" className={`block text-xs font-mono uppercase tracking-wider font-semibold mb-2 ${
-                        darkMode ? 'text-slate-400' : 'text-slate-600'
-                      }`}>
-                        {t.contact.formEmail}
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="e.g. arpan@example.com"
-                        disabled={status === 'submitting'}
-                        className={`w-full px-4.5 py-3.5 rounded-xl border text-sm transition-all outline-none focus:ring-2 focus:ring-indigo-500/20 ${
-                          errors.email
-                            ? 'border-rose-500 bg-rose-500/5'
-                            : darkMode
-                              ? 'border-slate-850 bg-slate-900 text-white focus:border-indigo-500'
-                              : 'border-slate-300 bg-white text-slate-900 focus:border-indigo-600'
-                        }`}
-                      />
-                      {errors.email && (
-                        <p className="text-rose-500 text-xs font-mono mt-1.5 flex items-center gap-1">
-                          <span className="w-1 h-1 rounded-full bg-rose-500 inline-block" />
-                          {errors.email}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Message */}
-                    <div>
-                      <label htmlFor="message" className={`block text-xs font-mono uppercase tracking-wider font-semibold mb-2 ${
-                        darkMode ? 'text-slate-400' : 'text-slate-600'
-                      }`}>
-                        {t.contact.formMessage}
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={4}
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        placeholder={language === 'en' ? 'Specify key requirements, timeline, budget, or system targets...' : 'मुख्य आवश्यकताएं, समय सीमा, बजट या सिस्टम लक्ष्य निर्दिष्ट करें...'}
-                        disabled={status === 'submitting'}
-                        className={`w-full px-4.5 py-3.5 rounded-xl border text-sm transition-all outline-none focus:ring-2 focus:ring-indigo-500/20 resize-none ${
-                          errors.message
-                            ? 'border-rose-500 bg-rose-500/5'
-                            : darkMode
-                              ? 'border-slate-850 bg-slate-900 text-white focus:border-indigo-500'
-                              : 'border-slate-300 bg-white text-slate-900 focus:border-indigo-600'
-                        }`}
-                      />
-                      {errors.message && (
-                        <p className="text-rose-500 text-xs font-mono mt-1.5 flex items-center gap-1">
-                          <span className="w-1 h-1 rounded-full bg-rose-500 inline-block" />
-                          {errors.message}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Submit Button */}
-                    <button
-                      type="submit"
-                      disabled={status === 'submitting'}
-                      className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-600/10 hover:shadow-indigo-600/20 disabled:bg-indigo-600/50 transition-all cursor-pointer"
-                      id="contact-submit-btn"
-                    >
-                      {status === 'submitting' ? (
-                        <>
-                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                          </svg>
-                          {t.contact.formSending}
-                        </>
-                      ) : (
-                        <>
-                          {t.contact.formSubmit}
-                          <LucideIcon name="Send" size={16} />
-                        </>
-                      )}
-                    </button>
-                  </motion.form>
-                )}
-              </AnimatePresence>
-            </div>
           </div>
 
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* SUCCESS CONFIRMATION MODAL */}
+      {showModal && (
+        <div id="success-modal" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--bg-main)]/90 backdrop-blur-md">
+          <div className="glass-card rounded-2xl max-w-md w-full p-8 border border-[var(--border-color)] text-center relative">
+            <button onClick={closeModal} aria-label="Close modal" className="absolute top-4 right-4 text-[var(--text-muted)] hover:text-[var(--text-main)] text-lg">
+              <i className="fa-solid fa-xmark"></i>
+            </button>
+            <div className="w-16 h-16 rounded-full bg-blue-500/10 text-blue-500 text-3xl flex items-center justify-center mx-auto mb-4 border border-blue-500/20">
+              <i className="fa-solid fa-paper-plane"></i>
+            </div>
+            <h3 className="text-2xl font-bold text-[var(--text-main)] font-heading mb-2">Quote Request Prepared!</h3>
+            <p className="text-[var(--text-muted)] text-sm mb-6">
+              Your mail client has been opened pre-filled with your project specifications. You can also contact us directly at <span className="text-blue-500 font-semibold">anantechsol@gmail.com</span>.
+            </p>
+            <div className="flex gap-3">
+              <button onClick={closeModal} className="w-full py-3 rounded-xl bg-blue-600 text-[var(--text-main)] font-semibold text-xs hover:bg-blue-500 transition-all">Done</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
-}
+};
+
+export default Contact;

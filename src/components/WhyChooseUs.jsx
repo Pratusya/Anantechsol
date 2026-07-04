@@ -1,10 +1,12 @@
-import { motion } from 'motion/react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { WHY_CHOOSE_US_DATA } from '../data';
 import LucideIcon from './LucideIcon';
 import { TRANSLATIONS } from '../translations';
 
-export default function WhyChooseUs({ darkMode, language }) {
+export default function WhyChooseUs({ language }) {
   const t = TRANSLATIONS[language];
+  const [openIndex, setOpenIndex] = useState(0);
 
   const getPillarTranslation = (id) => {
     switch (id) {
@@ -16,94 +18,108 @@ export default function WhyChooseUs({ darkMode, language }) {
     }
   };
 
-  const mainDescription = language === 'en'
-    ? 'We treat your software projects as our own. We combine robust architectural stability, rapid shipping times, clear milestones, and accessible post-production support to ensure your technology never stops serving your business growth.'
-    : 'हम आपके सॉफ़्टवेयर प्रोजेक्ट को अपना समझकर काम करते हैं। हम मजबूत आर्किटेक्चर स्थिरता, त्वरित शिपिंग समय, स्पष्ट मील के पत्थर और सुलभ तकनीकी सहायता को जोड़ते हैं ताकि यह सुनिश्चित हो सके कि आपकी तकनीक आपके व्यवसाय के विकास की सेवा करना कभी न रोके।';
+  const faqItems = WHY_CHOOSE_US_DATA.map(pillar => {
+    const translation = getPillarTranslation(pillar.id);
+    return {
+      id: pillar.id,
+      question: translation.title || pillar.title,
+      answer: translation.description || pillar.description,
+      icon: pillar.iconName,
+    };
+  });
 
   return (
     <section
       id="why-us"
-      className={`relative py-20 sm:py-28 overflow-hidden transition-colors duration-300 ${
-        darkMode ? 'bg-slate-950 text-white' : 'bg-slate-50 text-slate-900'
-      }`}
+      style={{ backgroundColor: '#0C0C0C', color: '#E8E8E4', padding: '100px 0', position: 'relative', overflow: 'hidden' }}
     >
-      {/* Subtle Background Elements */}
-      <div className={`absolute inset-0 z-0 opacity-50 bg-dot-pattern ${darkMode ? 'opacity-20 bg-dot-pattern-dark' : ''}`} />
+      <div className="bg-dot-pattern-dark" style={{ position: 'absolute', inset: 0, opacity: 0.4 }} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Left Text Box */}
-          <div className="lg:col-span-4" id="why-us-intro">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="h-px w-8 bg-indigo-500" />
-              <span className="text-sm font-semibold tracking-wider text-indigo-500 uppercase font-mono">
-                {t.whyChooseUs.tag}
-              </span>
-            </div>
-            
-            <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mb-6">
-              {t.whyChooseUs.title}
-            </h2>
-            
-            <p className={`text-base sm:text-lg leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-              {mainDescription}
-            </p>
+      <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 10 }}>
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: 64 }} id="why-us-intro">
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            padding: '5px 14px', borderRadius: 999,
+            border: '1px solid #2A2A28', marginBottom: 20,
+          }}>
+            <span style={{ width: 5, height: 5, borderRadius: '50%', backgroundColor: '#22C55E', display: 'inline-block' }} />
+            <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7A7A76', fontFamily: 'var(--font-mono)' }}>
+              {t.whyChooseUs.tag}
+            </span>
           </div>
 
-          {/* Right Grid of 4 points */}
-          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8" id="why-us-grid">
-            {WHY_CHOOSE_US_DATA.map((pillar, index) => {
-              // Custom colors matching the tech theme
-              const getIconStyle = (pillId) => {
-                switch (pillId) {
-                  case 'fast-turnaround':
-                    return 'bg-amber-100 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400';
-                  case 'clear-communication':
-                    return 'bg-cyan-100 dark:bg-cyan-950/40 text-cyan-600 dark:text-cyan-400';
-                  case 'post-launch':
-                    return 'bg-rose-100 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400';
-                  default: // affordable-pricing
-                    return 'bg-indigo-100 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400';
-                }
-              };
+          <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 42px)', fontWeight: 700, letterSpacing: '-0.02em', color: '#F5F5F3', marginBottom: 16 }}>
+            {t.whyChooseUs.title}
+          </h2>
+          <p style={{ fontSize: 16, lineHeight: 1.7, color: '#7A7A76', maxWidth: 560, margin: '0 auto' }}>
+            {language === 'en'
+              ? 'What teams want to know before trusting AnanTechsol with their project.'
+              : 'टीम्स AnanTechsol पर भरोसा करने से पहले क्या जानना चाहती हैं।'}
+          </p>
+        </div>
 
-              const iconStyle = getIconStyle(pillar.id);
-              const translation = getPillarTranslation(pillar.id);
-
-              return (
-                <motion.div
-                  key={pillar.id}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.4, delay: index * 0.15 }}
-                  className={`p-6.5 sm:p-8 rounded-2xl border transition-all duration-300 ${
-                    darkMode
-                      ? 'border-slate-855 bg-slate-900/50 hover:bg-slate-900 hover:border-slate-700/80'
-                      : 'border-slate-200 bg-white hover:bg-white hover:border-indigo-150 shadow-sm hover:shadow-md'
-                  }`}
-                  id={`why-pillar-${pillar.id}`}
+        {/* Accordion FAQ */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }} id="why-us-grid">
+          {faqItems.map((item, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div
+                key={item.id}
+                style={{
+                  borderRadius: 14, overflow: 'hidden',
+                  border: '1px solid', borderColor: isOpen ? '#3A3A38' : '#2A2A28',
+                  backgroundColor: isOpen ? '#161616' : '#111111',
+                  transition: 'all 0.3s ease',
+                }}
+                id={`why-pillar-${item.id}`}
+              >
+                <button
+                  onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                  style={{
+                    width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                    padding: '20px 24px', background: 'none', border: 'none',
+                    cursor: 'pointer', textAlign: 'left', color: isOpen ? '#F5F5F3' : '#A0A09C',
+                    transition: 'color 0.2s',
+                  }}
                 >
-                  {/* Icon */}
-                  <div className={`flex items-center justify-center w-11 h-11 rounded-lg mb-5 ${iconStyle}`}>
-                    <LucideIcon name={pillar.iconName} size={20} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                    <div style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      width: 36, height: 36, borderRadius: 10,
+                      backgroundColor: isOpen ? '#222220' : '#1A1A1A',
+                      color: isOpen ? '#E8E8E4' : '#6B6B68',
+                    }}>
+                      <LucideIcon name={item.icon} size={16} />
+                    </div>
+                    <span style={{ fontSize: 16, fontWeight: 600 }}>{item.question}</span>
                   </div>
+                  <motion.div animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.2 }}>
+                    <LucideIcon name="X" size={16} style={{ color: isOpen ? '#A0A09C' : '#5A5A58' }} />
+                  </motion.div>
+                </button>
 
-                  {/* Text details */}
-                  <h3 className={`font-display text-lg font-bold tracking-tight mb-2.5 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                    {translation.title || pillar.title}
-                  </h3>
-                  
-                  <p className={`text-sm sm:text-base leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    {translation.description || pillar.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      style={{ overflow: 'hidden' }}
+                    >
+                      <p style={{
+                        padding: '0 24px 24px 74px', fontSize: 14,
+                        lineHeight: 1.7, color: '#7A7A76',
+                      }}>
+                        {item.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

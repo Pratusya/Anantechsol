@@ -3,7 +3,7 @@ import { PROJECTS_DATA } from '../data';
 import LucideIcon from './LucideIcon';
 import { TRANSLATIONS } from '../translations';
 
-export default function Projects({ darkMode, language }) {
+export default function Projects({ language }) {
   const t = TRANSLATIONS[language];
 
   const getProjectTranslation = (id) => {
@@ -15,271 +15,150 @@ export default function Projects({ darkMode, language }) {
     }
   };
 
-  // Let's render custom visual web browser simulator mockups for each project
-  const renderProjectMockup = (projectId) => {
-    switch (projectId) {
-      case 'skov-fashion':
-        return (
-          <div className="w-full h-44 bg-rose-50/50 dark:bg-rose-950/20 flex flex-col p-3 relative overflow-hidden font-sans">
-            {/* Saree shop mockup */}
-            <div className="flex items-center justify-between border-b border-rose-100 dark:border-rose-900/30 pb-2 mb-2 text-[10px] font-mono text-rose-600 dark:text-rose-400">
-              <span className="font-bold tracking-widest font-display">SKOV BOUTIQUE</span>
-              <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-                <span>SURAT, GJ</span>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-3 gap-2 flex-1">
-              <div className="col-span-1 rounded-lg border border-rose-100/50 dark:border-rose-900/10 bg-white dark:bg-slate-900 p-1.5 flex flex-col justify-between">
-                <div className="w-full h-12 rounded bg-gradient-to-tr from-amber-200 to-rose-400 opacity-80" />
-                <div className="h-2 w-10 bg-slate-200 dark:bg-slate-800 rounded mt-1.5" />
-                <div className="h-1.5 w-7 bg-slate-100 dark:bg-slate-850 rounded mt-1" />
-              </div>
-              <div className="col-span-1 rounded-lg border border-rose-100/50 dark:border-rose-900/10 bg-white dark:bg-slate-900 p-1.5 flex flex-col justify-between">
-                <div className="w-full h-12 rounded bg-gradient-to-tr from-purple-400 to-rose-500 opacity-80" />
-                <div className="h-2 w-10 bg-slate-200 dark:bg-slate-800 rounded mt-1.5" />
-                <div className="h-1.5 w-6 bg-slate-100 dark:bg-slate-850 rounded mt-1" />
-              </div>
-              <div className="col-span-1 rounded-lg border border-rose-100/50 dark:border-rose-900/10 bg-white dark:bg-slate-900 p-1.5 flex flex-col justify-between">
-                <div className="w-full h-12 rounded bg-gradient-to-tr from-red-400 to-indigo-500 opacity-80" />
-                <div className="h-2 w-10 bg-slate-200 dark:bg-slate-800 rounded mt-1.5" />
-                <div className="h-1.5 w-8 bg-slate-100 dark:bg-slate-850 rounded mt-1" />
-              </div>
-            </div>
+  const getMockupGradient = (id) => {
+    switch (id) {
+      case 'skov-fashion': return 'linear-gradient(135deg, #F5E6D3, #E8D5C4, #DCC6B4)';
+      case 'shiksha-netra': return 'linear-gradient(135deg, #D3E4F5, #C4D5E8, #B4C6DC)';
+      case 'naice-primary': return 'linear-gradient(135deg, #E8F5D3, #D5E8C4, #C6DCB4)';
+      default: return 'linear-gradient(135deg, #E8E8E4, #D4D4D0)';
+    }
+  };
 
-            <div className="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-rose-400/10 blur-xl pointer-events-none" />
-          </div>
-        );
-
-      case 'shiksha-netra':
-        return (
-          <div className="w-full h-44 bg-cyan-50/50 dark:bg-cyan-950/20 flex flex-col p-3 relative overflow-hidden font-sans">
-            {/* Dashboard Mockup */}
-            <div className="flex items-center justify-between border-b border-cyan-100 dark:border-cyan-900/30 pb-2 mb-2 text-[10px] font-mono text-cyan-600 dark:text-cyan-400">
-              <span className="font-bold tracking-tight flex items-center gap-1">
-                <LucideIcon name="GraduationCap" size={10} />
-                SHIKSHANETRA DASHBOARD
-              </span>
-              <span className="px-1.5 py-0.5 rounded bg-cyan-100 dark:bg-cyan-900/60 font-semibold text-[8px]">
-                {language === 'en' ? 'SAAS CLIENT ACTIVE' : 'सक्रिय SaaS क्लाइंट'}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-4 gap-2 flex-1">
-              <div className="col-span-1 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-lg p-1.5 flex flex-col justify-between">
-                <span className="text-[7px] font-mono text-slate-400">ATTENDANCE</span>
-                <span className="text-sm font-bold text-slate-800 dark:text-slate-100">94.2%</span>
-                <div className="w-full bg-slate-100 dark:bg-slate-800 h-1 rounded overflow-hidden">
-                  <div className="bg-emerald-500 h-full w-[94%]" />
-                </div>
-              </div>
-              <div className="col-span-2 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-lg p-1.5 flex flex-col justify-between">
-                <span className="text-[7px] font-mono text-slate-400">FEE ANALYSIS</span>
-                <div className="flex gap-1 items-end h-6 pb-1">
-                  <div className="w-2 bg-indigo-500 h-[60%] rounded-t-sm" />
-                  <div className="w-2 bg-indigo-500 h-[80%] rounded-t-sm" />
-                  <div className="w-2 bg-cyan-400 h-[100%] rounded-t-sm" />
-                  <div className="w-2 bg-cyan-400 h-[40%] rounded-t-sm" />
-                </div>
-                <div className="h-1 w-12 bg-slate-100 dark:bg-slate-850 rounded" />
-              </div>
-              <div className="col-span-1 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-805 rounded-lg p-1.5 flex flex-col justify-between">
-                <span className="text-[7px] font-mono text-slate-400">REVENUE</span>
-                <span className="text-xs font-bold text-indigo-500">₹8.4L</span>
-                <span className="text-[6px] text-emerald-500 font-mono">+12% MoM</span>
-              </div>
-            </div>
-
-            <div className="absolute -left-6 -bottom-6 w-20 h-20 rounded-full bg-indigo-500/10 blur-lg pointer-events-none" />
-          </div>
-        );
-
-      case 'naice-primary':
-        return (
-          <div className="w-full h-44 bg-amber-50/50 dark:bg-amber-950/20 flex flex-col p-3 relative overflow-hidden font-sans">
-            {/* Friendly Primary School Layout */}
-            <div className="flex items-center justify-between border-b border-amber-100 dark:border-amber-900/30 pb-2 mb-2 text-[10px] text-amber-700 dark:text-amber-400">
-              <span className="font-bold tracking-wide">🏫 NaICE Primary Portal</span>
-              <div className="flex items-center gap-1 text-[8px] font-mono px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-950/60">
-                <span>{language === 'en' ? 'ADMISSIONS OPEN' : 'प्रवेश प्रारंभ'}</span>
-              </div>
-            </div>
-
-            <div className="flex flex-col flex-1 justify-between">
-              <div className="flex gap-3 items-center">
-                <div className="w-12 h-12 rounded-full border-2 border-amber-400 flex items-center justify-center bg-white overflow-hidden text-lg">
-                  👶
-                </div>
-                <div className="space-y-1">
-                  <div className="h-2 w-28 bg-slate-700 dark:bg-slate-200 rounded" />
-                  <div className="h-1.5 w-36 bg-slate-400 dark:bg-slate-400 rounded" />
-                  <div className="h-1.5 w-16 bg-slate-300 dark:bg-slate-500 rounded" />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-3 gap-2 mt-2">
-                <div className="bg-white dark:bg-slate-900/80 rounded p-1 text-center text-[7px] font-medium border border-slate-100 dark:border-slate-800">
-                  🎨 CREATIVE
-                </div>
-                <div className="bg-white dark:bg-slate-900/80 rounded p-1 text-center text-[7px] font-medium border border-slate-100 dark:border-slate-800">
-                  ⚽ SPORTS
-                </div>
-                <div className="bg-white dark:bg-slate-900/80 rounded p-1 text-center text-[7px] font-medium border border-slate-100 dark:border-slate-800">
-                  📚 SCIENCE
-                </div>
-              </div>
-            </div>
-
-            <div className="absolute -right-6 -bottom-6 w-20 h-20 rounded-full bg-amber-400/10 blur-lg pointer-events-none" />
-          </div>
-        );
-
-      default:
-        return <div className="w-full h-44 bg-slate-200 dark:bg-slate-800" />;
+  const getMockupLabel = (id) => {
+    switch (id) {
+      case 'skov-fashion': return 'E-COMMERCE';
+      case 'shiksha-netra': return 'SAAS PLATFORM';
+      case 'naice-primary': return 'SCHOOL PORTAL';
+      default: return 'PROJECT';
     }
   };
 
   return (
-    <section
-      id="projects"
-      className={`relative py-20 sm:py-28 overflow-hidden transition-colors duration-300 ${
-        darkMode ? 'bg-slate-900 text-white' : 'bg-white text-slate-900'
-      }`}
-    >
-      <div className="absolute left-10 top-1/3 w-[300px] h-[300px] bg-cyan-500/5 rounded-full filter blur-[120px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-20" id="projects-header">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="h-px w-8 bg-indigo-500" />
-              <span className="text-sm font-semibold tracking-wider text-indigo-500 uppercase font-mono">
+    <section id="projects" style={{ backgroundColor: '#F7F7F5', padding: '100px 0', position: 'relative' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
+        {/* Header */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'end', justifyContent: 'space-between', marginBottom: 64 }} id="projects-header">
+          <div style={{ maxWidth: 560 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+              <span style={{ height: 1, width: 32, backgroundColor: '#D4D4D0', display: 'inline-block' }} />
+              <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#8C8C88', fontFamily: 'var(--font-mono)' }}>
                 {t.projects.tag}
               </span>
             </div>
-            
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+
+            <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 42px)', fontWeight: 700, letterSpacing: '-0.02em', color: '#1A1A1A', marginBottom: 12 }}>
               {t.projects.title}
             </h2>
-            
-            <p className={`text-base sm:text-lg leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-              {t.projects.sub}
-            </p>
+            <p style={{ fontSize: 16, lineHeight: 1.7, color: '#6B6B68' }}>{t.projects.sub}</p>
           </div>
 
-          <div className="mt-6 md:mt-0" id="projects-lead">
-            <span className={`text-sm font-mono flex items-center gap-2 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-              <span className="h-2 w-2 rounded-full bg-emerald-500 inline-block animate-ping" />
-              {language === 'en' ? '3 ROBUST PORTALS DEPLOYED' : '3 मजबूत पोर्टल तैनात'}
+          <div style={{ marginTop: 16 }} id="projects-lead">
+            <span style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontFamily: 'var(--font-mono)', color: '#8C8C88' }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', backgroundColor: '#22C55E', display: 'inline-block' }} />
+              {language === 'en' ? '3 LIVE PORTALS DEPLOYED' : '3 लाइव पोर्टल तैनात'}
             </span>
           </div>
         </div>
 
-        {/* Portfolio Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8" id="projects-grid">
+        {/* Project Cards */}
+        <div style={{ display: 'grid', gap: 20 }} className="grid-cols-1 lg:!grid-cols-3" id="projects-grid">
           {PROJECTS_DATA.map((project, index) => {
             const translation = getProjectTranslation(project.id);
-
             return (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                className={`flex flex-col rounded-2xl overflow-hidden border transition-all duration-300 ${
-                  darkMode
-                    ? 'border-slate-800 bg-slate-950/60 hover:bg-slate-950 hover:border-slate-700 shadow-xl shadow-slate-950/40'
-                    : 'border-slate-200/80 bg-slate-50/50 hover:bg-white hover:border-indigo-200 shadow-sm hover:shadow-xl'
-                }`}
+                transition={{ duration: 0.5, delay: index * 0.12 }}
+                style={{
+                  display: 'flex', flexDirection: 'column', borderRadius: 20, overflow: 'hidden',
+                  border: '1px solid #E6E6E2', backgroundColor: '#FFFFFF',
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = '#CCCCC8'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.08)'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = '#E6E6E2'; e.currentTarget.style.boxShadow = 'none'; }}
                 id={`project-card-${project.id}`}
               >
-                {/* Browser Window Chrome simulator */}
-                <div className={`px-4 py-2.5 border-b flex items-center justify-between gap-4 shrink-0 ${
-                  darkMode ? 'bg-slate-900 border-slate-800' : 'bg-slate-100 border-slate-200'
-                }`}>
-                  {/* Dots */}
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    <div className="w-2.5 h-2.5 rounded-full bg-rose-400" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-                  </div>
-                  
-                  {/* Address Bar */}
-                  <div className={`flex-1 max-w-xs sm:max-w-md px-3 py-0.5 rounded text-[10px] font-mono text-center truncate ${
-                    darkMode ? 'bg-slate-950 text-slate-400 border border-slate-850' : 'bg-white text-slate-500 border border-slate-250/50'
-                  }`}>
-                    {project.url.replace('https://', '')}
+                {/* Visual Mockup Area */}
+                <div style={{
+                  background: getMockupGradient(project.id),
+                  padding: 24, minHeight: 180,
+                  display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+                  position: 'relative',
+                }}>
+                  {/* Browser chrome */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <div style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: 'rgba(0,0,0,0.12)' }} />
+                    <div style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: 'rgba(0,0,0,0.08)' }} />
+                    <div style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: 'rgba(0,0,0,0.06)' }} />
+                    <div style={{ flex: 1, marginLeft: 8, padding: '3px 12px', borderRadius: 6, backgroundColor: 'rgba(255,255,255,0.5)', fontSize: 10, fontFamily: 'var(--font-mono)', color: 'rgba(0,0,0,0.35)' }}>
+                      {project.url.replace('https://', '')}
+                    </div>
                   </div>
 
-                  {/* External Indicator */}
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`shrink-0 p-1 rounded hover:bg-indigo-500/10 ${
-                      darkMode ? 'text-slate-400 hover:text-cyan-400' : 'text-slate-500 hover:text-indigo-600'
-                    }`}
-                    title="Open live project in a new tab"
-                  >
-                    <LucideIcon name="ArrowUpRight" size={13} />
-                  </a>
+                  {/* Center label */}
+                  <div style={{ textAlign: 'center', padding: '20px 0' }}>
+                    <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', fontWeight: 600, letterSpacing: '0.12em', color: 'rgba(0,0,0,0.3)' }}>
+                      {getMockupLabel(project.id)}
+                    </span>
+                  </div>
                 </div>
 
-                {/* Simulated Page Content Preview */}
-                {renderProjectMockup(project.id)}
-
-                {/* Card Meta Content */}
-                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                {/* Content */}
+                <div style={{ padding: '28px 24px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
-                    <div className="flex items-center justify-between gap-2 mb-3">
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-cyan-300">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+                      <span style={{
+                        display: 'inline-flex', padding: '3px 10px', borderRadius: 999,
+                        fontSize: 11, fontWeight: 600, backgroundColor: '#F0F0EC',
+                        color: '#52524E',
+                      }}>
                         {translation.tag || project.tag}
                       </span>
-                      <span className={`text-[11px] font-mono tracking-tight font-medium ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                      <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: '#A0A09C' }}>
                         {translation.stats || project.stats}
                       </span>
                     </div>
 
-                    <h3 className={`font-display text-xl font-bold tracking-tight mb-3 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                    <h3 style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 10, letterSpacing: '-0.01em' }}>
                       {translation.name || project.name}
                     </h3>
-
-                    <p className={`text-sm sm:text-base leading-relaxed mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                    <p style={{ fontSize: 14, lineHeight: 1.65, color: '#6B6B68', marginBottom: 20 }}>
                       {translation.description || project.description}
                     </p>
                   </div>
 
                   <div>
-                    {/* Technology badging */}
-                    <div className="flex flex-wrap gap-1.5 mb-6" id={`project-tech-${project.id}`}>
-                      {project.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className={`text-[10px] font-mono px-2 py-0.5 rounded-md ${
-                            darkMode ? 'bg-slate-900 text-slate-300 border border-slate-800' : 'bg-white text-slate-600 border border-slate-200'
-                          }`}
-                        >
+                    {/* Tech stack */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 20 }}>
+                      {project.techStack.map(tech => (
+                        <span key={tech} style={{
+                          fontSize: 10, fontFamily: 'var(--font-mono)', padding: '3px 8px',
+                          borderRadius: 6, backgroundColor: '#F7F7F5', color: '#6B6B68',
+                          border: '1px solid #E6E6E2',
+                        }}>
                           {tech}
                         </span>
                       ))}
                     </div>
 
-                    {/* Visit Action Link */}
+                    {/* Visit link */}
                     <a
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1 text-sm font-semibold group-hover:underline ${
-                        darkMode ? 'text-cyan-400 hover:text-cyan-300' : 'text-indigo-600 hover:text-indigo-500'
-                      }`}
+                      style={{
+                        display: 'inline-flex', alignItems: 'center', gap: 4,
+                        fontSize: 13, fontWeight: 600, color: '#1A1A1A',
+                        textDecoration: 'none', transition: 'opacity 0.2s',
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.opacity = '0.6'}
+                      onMouseLeave={e => e.currentTarget.style.opacity = '1'}
                       id={`project-link-${project.id}`}
                     >
-                      {language === 'en' ? 'Launch Live Project' : 'लाइव प्रोजेक्ट खोलें'}
-                      <LucideIcon name="ArrowUpRight" size={15} className="ml-0.5" />
+                      {language === 'en' ? 'View Project' : 'प्रोजेक्ट देखें'}
+                      <LucideIcon name="ArrowUpRight" size={14} />
                     </a>
                   </div>
                 </div>
@@ -287,7 +166,6 @@ export default function Projects({ darkMode, language }) {
             );
           })}
         </div>
-
       </div>
     </section>
   );

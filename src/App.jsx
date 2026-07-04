@@ -1,93 +1,72 @@
 import { useState, useEffect } from 'react';
-import Navbar from './components/Navbar.jsx';
-import Hero from './components/Hero.jsx';
-import About from './components/About.jsx';
-import Industries from './components/Industries.jsx';
-import Services from './components/Services.jsx';
-import Technologies from './components/Technologies.jsx';
-import Projects from './components/Projects.jsx';
-import WhyChooseUs from './components/WhyChooseUs.jsx';
-import Contact from './components/Contact.jsx';
-import Footer from './components/Footer.jsx';
-import WhatsAppButton from './components/WhatsAppButton.jsx';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Services from './components/Services';
+import Work from './components/Work';
+import Stats from './components/Stats';
+import Pricing from './components/Pricing';
+import About from './components/About';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
 
-export default function App() {
-  // Manage language state, default to English
-  const [language, setLanguage] = useState(() => {
-    const savedLanguage = localStorage.getItem('language');
-    if (savedLanguage === 'hi') return 'hi';
-    return 'en';
-  });
+function App() {
+  const [activeTab, setActiveTab] = useState('web');
 
-  // Check if dark mode preference is saved in localStorage, default to dark theme
-  const [darkMode, setDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      return savedTheme === 'dark';
-    }
-    return true; // Default to modern professional Dark Theme
-  });
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [darkMode]);
-
-  useEffect(() => {
-    localStorage.setItem('language', language);
-  }, [language]);
-
-  const toggleDarkMode = () => {
-    setDarkMode((prev) => !prev);
+  const switchPricingTab = (tabName) => {
+    setActiveTab(tabName);
   };
 
+  const handleSelectPackage = (packageName) => {
+    const selectElem = document.getElementById('contact-project');
+    if (selectElem) {
+      selectElem.value = packageName;
+    }
+  };
+
+  useEffect(() => {
+    // Intersection Observer for Scroll Reveal Animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(elem => {
+        revealObserver.observe(elem);
+    });
+
+    return () => {
+        revealObserver.disconnect();
+    };
+  }, []);
+
   return (
-    <div className={`min-h-screen transition-colors duration-300 font-sans ${darkMode ? 'bg-slate-950 text-white' : 'bg-slate-50 text-slate-900'}`}>
-      {/* Navigation */}
-      <Navbar
-        darkMode={darkMode}
-        toggleDarkMode={toggleDarkMode}
-        language={language}
-        setLanguage={setLanguage}
+    <div className="antialiased selection:bg-blue-600 selection:text-[var(--text-main)] relative overflow-x-hidden">
+      {/* Target Top Anchor */}
+      <div id="top"></div>
+      
+      <Navbar />
+      <Hero />
+      <Services switchPricingTab={switchPricingTab} />
+      <Work />
+      <Stats />
+      <Pricing 
+        activeTab={activeTab} 
+        switchPricingTab={switchPricingTab} 
+        handleSelectPackage={handleSelectPackage} 
       />
-
-      {/* Main Sections */}
-      <main id="main-content">
-        {/* Hero Section */}
-        <Hero darkMode={darkMode} language={language} />
-
-        {/* About Us Section */}
-        <About darkMode={darkMode} language={language} />
-
-        {/* Industries We Serve Section */}
-        <Industries darkMode={darkMode} language={language} />
-
-        {/* Services Section */}
-        <Services darkMode={darkMode} language={language} />
-
-        {/* Technologies We Work With Section */}
-        <Technologies darkMode={darkMode} language={language} />
-
-        {/* Projects / Portfolio Section */}
-        <Projects darkMode={darkMode} language={language} />
-
-        {/* Why Choose Us Section */}
-        <WhyChooseUs darkMode={darkMode} language={language} />
-
-        {/* Contact Section */}
-        <Contact darkMode={darkMode} language={language} />
-      </main>
-
-      {/* Footer */}
-      <Footer darkMode={darkMode} language={language} />
-
-      {/* Floating Interactive WhatsApp Chat Button */}
-      <WhatsAppButton />
+      <About />
+      <Contact />
+      <Footer />
     </div>
   );
 }
+
+export default App;

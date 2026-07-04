@@ -8,44 +8,37 @@ export default function WhatsAppButton() {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-center justify-center">
-      {/* Ripple Rings */}
-      <div className="absolute inset-0 rounded-full bg-emerald-500/20 animate-ping -z-10 scale-125" style={{ animationDuration: '2s' }} />
-      <div className="absolute inset-0 rounded-full bg-emerald-500/10 animate-ping -z-10 scale-150" style={{ animationDuration: '3s' }} />
-
+    <div style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <motion.a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        whileHover={{ scale: 1.08 }}
+        whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.95 }}
-        className="relative flex items-center justify-center w-14 h-14 rounded-full bg-emerald-500 text-white shadow-2xl hover:bg-emerald-400 transition-colors cursor-pointer group"
+        style={{
+          position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          width: 52, height: 52, borderRadius: '50%',
+          backgroundColor: '#1A1A1A', color: '#FFFFFF',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+          transition: 'background 0.2s', cursor: 'pointer', textDecoration: 'none',
+        }}
+        onMouseEnter={e => e.currentTarget.style.backgroundColor = '#333'}
+        onMouseLeave={e => e.currentTarget.style.backgroundColor = '#1A1A1A'}
         aria-label="Contact AnanTechsol on WhatsApp"
         id="whatsapp-fab"
       >
-        {/* SVG WhatsApp Icon */}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="w-7 h-7"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+          style={{ width: 24, height: 24 }}>
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
         </svg>
 
-        {/* Dynamic '1' Notification Badge from Mockup Reference 2 */}
-        <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-rose-600 text-[10px] font-bold text-white ring-2 ring-white animate-bounce shadow">
-          1
-        </span>
-
-        {/* Hover Label Tooltip */}
-        <span className="absolute right-16 px-3 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-md border border-slate-800">
-          Chat with us on WhatsApp
-        </span>
+        {/* Notification dot */}
+        <span style={{
+          position: 'absolute', top: -2, right: -2,
+          width: 14, height: 14, borderRadius: '50%',
+          backgroundColor: '#22C55E', border: '2px solid #F7F7F5',
+        }} />
       </motion.a>
     </div>
   );

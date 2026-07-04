@@ -27,7 +27,8 @@ import {
   Mail,
   Send,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Languages
 } from 'lucide-react';
 
 const iconMap = {
@@ -59,7 +60,8 @@ const iconMap = {
   Mail,
   Send,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Languages
 };
 
 export default function LucideIcon({ name, className = '', size = 24 }) {

@@ -1,121 +1,69 @@
-import React from 'react';
-import LucideIcon from './LucideIcon';
-import { TRANSLATIONS } from '../translations';
+import logo from '../assets/logo.png';
 
-export default function Footer({ darkMode, language }) {
+const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const t = TRANSLATIONS[language];
-
-  const handleLinkClick = (e, href) => {
-    e.preventDefault();
-    const targetElement = document.querySelector(href);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
-  const footerLinks = [
-    { name: t.navbar.home, href: '#home' },
-    { name: t.navbar.about, href: '#about' },
-    { name: t.navbar.industries, href: '#industries' },
-    { name: t.navbar.services, href: '#services' },
-    { name: t.navbar.technologies, href: '#technologies' },
-    { name: t.navbar.projects, href: '#projects' },
-    { name: t.navbar.whyUs, href: '#why-us' },
-    { name: t.navbar.contact, href: '#contact' },
-  ];
 
   return (
-    <footer
-      id="footer"
-      className={`border-t transition-colors duration-300 ${
-        darkMode ? 'bg-slate-950 border-slate-900 text-slate-400' : 'bg-slate-100 border-slate-200 text-slate-600'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-12 items-center">
+    <footer className="border-t border-[var(--border-color)]/80 bg-[var(--bg-main)] py-12 relative z-10 text-[var(--text-muted)] text-xs sm:text-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-[var(--border-color)]/80">
           
-          {/* Brand block (Span 5) */}
-          <div className="md:col-span-5 space-y-4" id="footer-brand">
-            <a
-              href="#home"
-              onClick={(e) => handleLinkClick(e, '#home')}
-              className="flex items-center gap-2.5 group"
-            >
-              <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-50 to-cyan-400 text-white font-bold text-lg shadow-md shadow-indigo-500/10">
-                A
-              </div>
-              <span className={`font-display text-lg font-bold tracking-tight ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                Anan<span className="text-indigo-500">Techsol</span>
-              </span>
+          {/* Col 1: Studio Info */}
+          <div className="md:col-span-5 space-y-4">
+            <a href="#top" className="flex items-center">
+              <img src={logo} alt="AnanTechsol Logo" className="h-10 sm:h-12 w-auto object-contain rounded-lg" />
             </a>
-            
-            <p className="text-sm leading-relaxed max-w-sm">
-              {t.footer.tagline}
+            <p className="text-[var(--text-muted)] text-xs sm:text-sm max-w-sm leading-relaxed">
+              AnanTechsol builds custom web applications, e-commerce stores, and operational management software for businesses in Surat, Gujarat and beyond.
             </p>
-          </div>
-
-          {/* Quick Links Column (Span 4) */}
-          <div className="md:col-span-4" id="footer-links-container">
-            <h4 className={`text-xs font-mono uppercase tracking-widest font-bold mb-4 ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
-              {t.footer.quickLinks}
-            </h4>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5">
-              {footerLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                  className={`text-sm hover:underline transition-colors ${
-                    darkMode ? 'hover:text-cyan-300' : 'hover:text-indigo-600'
-                  }`}
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Social block (Span 3) */}
-          <div className="md:col-span-3 space-y-4 md:text-right" id="footer-socials">
-            <h4 className={`text-xs font-mono uppercase tracking-widest font-bold mb-3 md:mb-4 ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
-              {language === 'en' ? 'Social Channels' : 'सोशल चैनल'}
-            </h4>
-            
-            <div className="flex gap-3 justify-start md:justify-end">
-              <a
-                href="https://instagram.com/anantechsol"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center justify-center w-10 h-10 rounded-lg border transition-all ${
-                  darkMode
-                    ? 'border-slate-800 bg-slate-900 text-slate-300 hover:text-white hover:border-slate-750'
-                    : 'border-slate-200 bg-white text-slate-600 hover:text-slate-900 hover:border-slate-300 shadow-sm'
-                }`}
-                aria-label="Instagram Profile"
-                title="Follow @anantechsol on Instagram"
-              >
-                <LucideIcon name="Instagram" size={18} />
+            <div className="flex items-center gap-3 pt-2">
+              <a href="https://instagram.com/anantechsol" target="_blank" rel="noopener noreferrer" aria-label="AnanTechsol Instagram" className="w-9 h-9 rounded-lg bg-[var(--bg-card)] border border-[var(--border-color)] flex items-center justify-center text-[var(--text-muted)] hover:text-pink-400 hover:border-pink-500/50 transition-colors">
+                <i className="fa-brands fa-instagram text-base"></i>
+              </a>
+              <a href="mailto:anantechsol@gmail.com" aria-label="Email AnanTechsol" className="w-9 h-9 rounded-lg bg-[var(--bg-card)] border border-[var(--border-color)] flex items-center justify-center text-[var(--text-muted)] hover:text-blue-400 hover:border-blue-500/50 transition-colors">
+                <i className="fa-solid fa-envelope text-base"></i>
               </a>
             </div>
-
-            <p className="text-xs font-mono text-slate-500">
-              Surat, Gujarat, India
-            </p>
           </div>
 
-         </div>
+          {/* Col 2: Navigation Links */}
+          <div className="md:col-span-3">
+            <h4 className="text-[var(--text-main)] font-semibold text-xs uppercase tracking-wider mb-4 font-heading">Navigation</h4>
+            <ul className="space-y-2.5 text-xs">
+              <li><a href="#services" className="hover:text-blue-400 transition-colors">Our Services</a></li>
+              <li><a href="#work" className="hover:text-blue-400 transition-colors">Featured Work</a></li>
+              <li><a href="#pricing" className="hover:text-blue-400 transition-colors">Pricing Packages</a></li>
+              <li><a href="#about" className="hover:text-blue-400 transition-colors">About Studio</a></li>
+              <li><a href="#contact" className="hover:text-blue-400 transition-colors">Contact Us</a></li>
+            </ul>
+          </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-slate-250/20 dark:border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs font-mono tracking-tight" id="footer-copyright">
-            &copy; {currentYear} AnanTechsol. {t.footer.rights}
-          </p>
-          <p className="text-[10px] font-mono text-slate-500">
-            {language === 'en' ? 'Design & Engineering by AnanTechsol' : 'डिज़ाइन और इंजीनियरिंग AnanTechsol द्वारा'}
+          {/* Col 3: Live Portfolio Links */}
+          <div className="md:col-span-4">
+            <h4 className="text-[var(--text-main)] font-semibold text-xs uppercase tracking-wider mb-4 font-heading">Shipped Products</h4>
+            <ul className="space-y-2 text-xs text-[var(--text-muted)]">
+              <li><a href="https://shikshanetra.arpan.studio" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-main)] transition-colors flex items-center justify-between"><span>ShikshaNetra (School ERP)</span> <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a></li>
+              <li><a href="https://naicetheprimary.in" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-main)] transition-colors flex items-center justify-between"><span>NaICE Primary School</span> <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a></li>
+              <li><a href="https://skovfashion.com" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-main)] transition-colors flex items-center justify-between"><span>Skov Fashion</span> <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a></li>
+              <li><a href="https://emallword.com" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-main)] transition-colors flex items-center justify-between"><span>Emallword E-Commerce</span> <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a></li>
+              <li><a href="https://cnc-website-rouge.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-main)] transition-colors flex items-center justify-between"><span>Gujarat Profile (Industrial 3D)</span> <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        {/* Bottom Copyright & Studio Location */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--text-muted)]">
+          <p>© <span id="year">{currentYear}</span> AnanTechsol. All rights reserved.</p>
+          <p className="flex items-center gap-2">
+            <i className="fa-solid fa-code text-blue-500"></i> Built with precision in Surat, Gujarat, India.
           </p>
         </div>
+
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

@@ -1,119 +1,136 @@
-import { motion } from 'motion/react';
-import { SERVICES_DATA } from '../data';
-import LucideIcon from './LucideIcon';
-import { TRANSLATIONS } from '../translations';
-
-export default function Services({ darkMode, language }) {
-  const t = TRANSLATIONS[language];
-
-  const getServiceTranslation = (id) => {
-    switch (id) {
-      case 'web-dev': return t.services.webDev;
-      case 'e-com': return t.services.ecom;
-      case 'mobile-dev': return t.services.mobileDev;
-      case 'school-management': return t.services.schoolMgmt;
-      case 'employee-management': return t.services.employeeMgmt;
-      case 'store-inventory': return t.services.storeInventory;
-      case 'appointment-booking': return t.services.appointmentBooking;
-      default: return { title: '', description: '' };
-    }
-  };
-
+const Services = ({ switchPricingTab }) => {
   return (
-    <section
-      id="services"
-      className={`relative py-20 sm:py-28 overflow-hidden transition-colors duration-300 ${
-        darkMode ? 'bg-slate-950 text-white' : 'bg-slate-50 text-slate-900'
-      }`}
-    >
-      {/* Background Dot Grid */}
-      <div className={`absolute inset-0 z-0 opacity-50 bg-grid-pattern ${darkMode ? 'opacity-20' : ''}`} />
-
-      {/* Glow Orbs */}
-      <div className="absolute right-10 bottom-10 w-[200px] h-[200px] bg-indigo-500/10 rounded-full filter blur-[80px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="services" className="py-20 relative z-10 border-t border-[var(--border-color)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20" id="services-header">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/10 dark:border-indigo-500/20 bg-indigo-50/50 dark:bg-slate-900/60 mb-4">
-            <span className="flex h-1.5 w-1.5 rounded-full bg-indigo-500" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-mono">
-              {t.services.tag}
-            </span>
-          </div>
-          
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6">
-            {t.services.title}
+        <div className="text-center max-w-3xl mx-auto mb-16 reveal">
+          <span className="text-blue-500 text-xs sm:text-sm font-semibold uppercase tracking-widest">What We Build</span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)] mt-4 font-heading">
+            Engineered for daily operations, not just presentation.
           </h2>
-          
-          <p className={`text-base sm:text-lg leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-            {t.services.sub}
+          <p className="text-[var(--text-muted)] mt-4 text-base sm:text-lg">
+            Five core capabilities designed to digitize manual workflows, power commerce, and accelerate business growth.
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="services-grid">
-          {SERVICES_DATA.map((service, index) => {
-            const translation = getServiceTranslation(service.id);
+        {/* Grid of 5 Services */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          
+          {/* Card 1: Web & Mobile Apps */}
+          <div className="glass-card glass-card-hover rounded-2xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group reveal">
+            <div className="absolute -right-10 -top-10 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/25 transition-all"></div>
+            <div>
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-tr from-blue-600/30 to-indigo-600/30 border border-blue-500/30 flex items-center justify-center text-blue-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                <i className="fa-solid fa-laptop-code"></i>
+              </div>
+              <h3 className="text-xl font-bold text-[var(--text-main)] font-heading mb-3 group-hover:text-blue-400 transition-colors">Web & Mobile Apps</h3>
+              <p className="text-[var(--text-muted)] text-sm leading-relaxed mb-6">
+                Portfolio sites, e-commerce stores and custom apps, built and shipped end to end.
+              </p>
+              <ul className="space-y-2 text-xs text-[var(--text-muted)] border-t border-[var(--border-color)] pt-4 mb-6">
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-blue-400 text-[10px]"></i> Ultra-fast responsive landing pages & portals</li>
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-blue-400 text-[10px]"></i> E-Commerce checkout & payment gateways</li>
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-blue-400 text-[10px]"></i> Mobile-friendly PWA & hybrid app options</li>
+              </ul>
+            </div>
+            <a href="#pricing" onClick={() => switchPricingTab('web')} className="inline-flex items-center text-xs font-semibold text-blue-400 hover:text-blue-300 gap-1.5 group/link cursor-pointer z-10">
+              Explore Web Packages <i className="fa-solid fa-arrow-right text-[10px] group-hover/link:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
 
-            return (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                className={`group relative p-8 rounded-2xl border transition-all duration-300 ${
-                  darkMode
-                    ? 'border-slate-850 bg-slate-900/45 hover:bg-slate-900 hover:border-slate-700/80 shadow-md shadow-slate-950/20'
-                    : 'border-slate-200/80 bg-white hover:bg-white hover:border-indigo-200 shadow-sm hover:shadow-lg'
-                }`}
-                id={`service-card-${service.id}`}
-              >
-                {/* Card Gradient Glow on hover */}
-                <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-indigo-500/0 to-cyan-400/0 group-hover:from-indigo-500/10 group-hover:to-cyan-400/10 transition-colors duration-300 -z-10" />
+          {/* Card 2: School Management */}
+          <div className="glass-card glass-card-hover rounded-2xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group reveal">
+            <div className="absolute -right-10 -top-10 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/25 transition-all"></div>
+            <div>
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-tr from-purple-600/30 to-pink-600/30 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                <i className="fa-solid fa-graduation-cap"></i>
+              </div>
+              <h3 className="text-xl font-bold text-[var(--text-main)] font-heading mb-3 group-hover:text-purple-400 transition-colors">School Management</h3>
+              <p className="text-[var(--text-muted)] text-sm leading-relaxed mb-6">
+                Attendance, fees, results and communication in one system for schools (ShikshaNetra).
+              </p>
+              <ul className="space-y-2 text-xs text-[var(--text-muted)] border-t border-[var(--border-color)] pt-4 mb-6">
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-purple-400 text-[10px]"></i> Complete fee collection & receipt generation</li>
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-purple-400 text-[10px]"></i> Student attendance & exam result cards</li>
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-purple-400 text-[10px]"></i> WhatsApp alerts & parent mobile portal</li>
+              </ul>
+            </div>
+            <a href="#pricing" onClick={() => switchPricingTab('school')} className="inline-flex items-center text-xs font-semibold text-purple-400 hover:text-purple-300 gap-1.5 group/link cursor-pointer z-10">
+              ShikshaNetra Pricing <i className="fa-solid fa-arrow-right text-[10px] group-hover/link:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
 
-                {/* Service Icon Container */}
-                <div className={`flex items-center justify-center w-12 h-12 rounded-xl mb-6 transition-all duration-300 ${
-                  darkMode
-                    ? 'bg-slate-800 text-cyan-400 group-hover:bg-indigo-600 group-hover:text-white'
-                    : 'bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white'
-                }`}>
-                  <LucideIcon name={service.iconName} size={24} />
-                </div>
+          {/* Card 3: Employee Management */}
+          <div className="glass-card glass-card-hover rounded-2xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group reveal">
+            <div className="absolute -right-10 -top-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/25 transition-all"></div>
+            <div>
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-tr from-emerald-600/30 to-teal-600/30 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                <i className="fa-solid fa-users-gear"></i>
+              </div>
+              <h3 className="text-xl font-bold text-[var(--text-main)] font-heading mb-3 group-hover:text-emerald-400 transition-colors">Employee Management</h3>
+              <p className="text-[var(--text-muted)] text-sm leading-relaxed mb-6">
+                Track staff, attendance, payroll basics and records without spreadsheets.
+              </p>
+              <ul className="space-y-2 text-xs text-[var(--text-muted)] border-t border-[var(--border-color)] pt-4 mb-6">
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-emerald-400 text-[10px]"></i> Staff attendance & leave tracker</li>
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-emerald-400 text-[10px]"></i> Salary slip generation & PF/ESI tracking</li>
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-emerald-400 text-[10px]"></i> Employee self-service portal</li>
+              </ul>
+            </div>
+            <a href="#pricing" onClick={() => switchPricingTab('hr')} className="inline-flex items-center text-xs font-semibold text-emerald-400 hover:text-emerald-300 gap-1.5 group/link cursor-pointer z-10">
+              HR Packages <i className="fa-solid fa-arrow-right text-[10px] group-hover/link:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
 
-                {/* Service Details */}
-                <h3 className={`font-display text-xl font-bold tracking-tight mb-3 transition-colors ${
-                  darkMode ? 'text-white group-hover:text-cyan-300' : 'text-slate-900 group-hover:text-indigo-600'
-                }`}>
-                  {translation.title || service.title}
-                </h3>
-                
-                <p className={`text-sm sm:text-base leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                  {translation.description || service.description}
-                </p>
+          {/* Card 4: Store & Inventory */}
+          <div className="glass-card glass-card-hover rounded-2xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group reveal">
+            <div className="absolute -right-10 -top-10 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/25 transition-all"></div>
+            <div>
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-tr from-amber-600/30 to-orange-600/30 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                <i className="fa-solid fa-boxes-stacked"></i>
+              </div>
+              <h3 className="text-xl font-bold text-[var(--text-main)] font-heading mb-3 group-hover:text-amber-400 transition-colors">Store & Inventory</h3>
+              <p className="text-[var(--text-muted)] text-sm leading-relaxed mb-6">
+                Stock levels, billing and sales tracking for retail and wholesale stores.
+              </p>
+              <ul className="space-y-2 text-xs text-[var(--text-muted)] border-t border-[var(--border-color)] pt-4 mb-6">
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-amber-400 text-[10px]"></i> Real-time inventory & stock low alerts</li>
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-amber-400 text-[10px]"></i> Point of Sale (POS) & GST invoicing</li>
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-amber-400 text-[10px]"></i> Vendor & supplier ledger management</li>
+              </ul>
+            </div>
+            <a href="#pricing" onClick={() => switchPricingTab('ecommerce')} className="inline-flex items-center text-xs font-semibold text-amber-400 hover:text-amber-300 gap-1.5 group/link cursor-pointer z-10">
+              Store & E-Com Packages <i className="fa-solid fa-arrow-right text-[10px] group-hover/link:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
 
-                {/* Decorative Subtle Line Arrow */}
-                <div className="mt-6 pt-5 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
-                  <span className={`text-xs font-mono tracking-wider uppercase ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-                    {language === 'en' ? 'Tailored System' : 'अनुकूलित सिस्टम'}
-                  </span>
-                  <LucideIcon
-                    name="ArrowRight"
-                    size={14}
-                    className={`transform group-hover:translate-x-1.5 transition-transform duration-300 ${
-                      darkMode ? 'text-cyan-400' : 'text-indigo-500'
-                    }`}
-                  />
-                </div>
-              </motion.div>
-            );
-          })}
+          {/* Card 5: Appointment Systems */}
+          <div className="glass-card glass-card-hover rounded-2xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group reveal md:col-span-2 lg:col-span-1">
+            <div className="absolute -right-10 -top-10 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/25 transition-all"></div>
+            <div>
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-tr from-cyan-600/30 to-blue-600/30 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                <i className="fa-regular fa-calendar-check"></i>
+              </div>
+              <h3 className="text-xl font-bold text-[var(--text-main)] font-heading mb-3 group-hover:text-cyan-400 transition-colors">Appointment Systems</h3>
+              <p className="text-[var(--text-muted)] text-sm leading-relaxed mb-6">
+                Online booking and scheduling so clients stop calling to check availability.
+              </p>
+              <ul className="space-y-2 text-xs text-[var(--text-muted)] border-t border-[var(--border-color)] pt-4 mb-6">
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-cyan-400 text-[10px]"></i> Automated time-slot scheduling</li>
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-cyan-400 text-[10px]"></i> WhatsApp & SMS appointment reminders</li>
+                <li className="flex items-center gap-2"><i className="fa-solid fa-check text-cyan-400 text-[10px]"></i> Online advance booking payments</li>
+              </ul>
+            </div>
+            <a href="#pricing" onClick={() => switchPricingTab('custom')} className="inline-flex items-center text-xs font-semibold text-cyan-400 hover:text-cyan-300 gap-1.5 group/link cursor-pointer z-10">
+              Custom Booking Systems <i className="fa-solid fa-arrow-right text-[10px] group-hover/link:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+
         </div>
-
       </div>
     </section>
   );
-}
+};
+
+export default Services;
