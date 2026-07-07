@@ -105,28 +105,28 @@ const Contact = () => {
                     <select id="contact-project" name="contact-project" required defaultValue="" className="w-full px-4 py-3 rounded-xl bg-[var(--bg-main)]/90 border border-[var(--border-color)] text-[var(--text-main)] focus:outline-none focus:border-blue-500 transition-colors text-sm">
                       <option value="" disabled>Select service or package...</option>
                       <optgroup label="Web Development">
-                        <option value="Web Dev - Starter (₹7,999)">Web Dev - Starter (₹7,999)</option>
-                        <option value="Web Dev - Business (₹17,999)">Web Dev - Business (₹17,999)</option>
-                        <option value="Web Dev - Premium (₹34,999)">Web Dev - Premium (₹34,999)</option>
+                        <option value="Web Dev - Starter">Web Dev - Starter</option>
+                        <option value="Web Dev - Business">Web Dev - Business</option>
+                        <option value="Web Dev - Premium">Web Dev - Premium</option>
                       </optgroup>
                       <optgroup label="E-Commerce Store">
-                        <option value="E-Commerce - Starter (₹14,999)">E-Commerce - Starter (₹14,999)</option>
-                        <option value="E-Commerce - Growth (₹29,999)">E-Commerce - Growth (₹29,999)</option>
-                        <option value="E-Commerce - Enterprise (₹59,999)">E-Commerce - Enterprise (₹59,999)</option>
+                        <option value="E-Commerce - Starter">E-Commerce - Starter</option>
+                        <option value="E-Commerce - Growth">E-Commerce - Growth</option>
+                        <option value="E-Commerce - Enterprise">E-Commerce - Enterprise</option>
                       </optgroup>
                       <optgroup label="School ERP (ShikshaNetra)">
-                        <option value="School ERP - Basic (₹22,000/yr)">School ERP - Basic (₹22,000/yr)</option>
-                        <option value="School ERP - Super (₹35,000/yr)">School ERP - Super (₹35,000/yr)</option>
+                        <option value="School ERP - Basic">School ERP - Basic</option>
+                        <option value="School ERP - Super">School ERP - Super</option>
                         <option value="School ERP - Enterprise">School ERP - Multi-Branch Enterprise</option>
                       </optgroup>
                       <optgroup label="HR Software">
-                        <option value="HR Software - Small Business (₹9,999/yr)">HR - Small Business (₹9,999/yr)</option>
-                        <option value="HR Software - Business (₹19,999/yr)">HR - Business (₹19,999/yr)</option>
-                        <option value="HR Software - Enterprise (₹39,999/yr)">HR - Enterprise (₹39,999/yr)</option>
+                        <option value="HR Software - Small Business">HR - Small Business</option>
+                        <option value="HR Software - Business">HR - Business</option>
+                        <option value="HR Software - Enterprise">HR - Enterprise</option>
                       </optgroup>
                       <optgroup label="Custom Dev">
-                        <option value="Custom Dev - MVP Build (₹24,999+)">Custom MVP Build (₹24,999+)</option>
-                        <option value="Custom Dev - Full Product (₹59,999+)">Custom Full Product (₹59,999+)</option>
+                        <option value="Custom Dev - MVP Build">Custom MVP Build</option>
+                        <option value="Custom Dev - Full Product">Custom Full Product</option>
                         <option value="Custom Dev - Enterprise Quote">Custom Enterprise Build</option>
                       </optgroup>
                       <option value="Other / General Query">Other / Custom Inquiry</option>

@@ -46,7 +46,7 @@ const Navbar = () => {
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--text-muted)]">
           <a href="#services" className="hover:text-[var(--text-main)] transition-colors">Services</a>
           <a href="#work" className="hover:text-[var(--text-main)] transition-colors">Work</a>
-          <a href="#pricing" className="hover:text-[var(--text-main)] transition-colors">Pricing</a>
+          <a href="#pricing" className="hover:text-[var(--text-main)] transition-colors">Packages</a>
           <a href="#about" className="hover:text-[var(--text-main)] transition-colors">About</a>
           <a href="#contact" className="hover:text-[var(--text-main)] transition-colors">Contact</a>
         </nav>
@@ -92,7 +92,7 @@ const Navbar = () => {
         <nav className="flex flex-col gap-4 text-base font-medium text-[var(--text-muted)]">
           <a href="#services" className="mobile-link hover:text-[var(--text-main)] py-1 border-b border-[var(--border-color)]" onClick={closeMenu}>Services</a>
           <a href="#work" className="mobile-link hover:text-[var(--text-main)] py-1 border-b border-[var(--border-color)]" onClick={closeMenu}>Work</a>
-          <a href="#pricing" className="mobile-link hover:text-[var(--text-main)] py-1 border-b border-[var(--border-color)]" onClick={closeMenu}>Pricing</a>
+          <a href="#pricing" className="mobile-link hover:text-[var(--text-main)] py-1 border-b border-[var(--border-color)]" onClick={closeMenu}>Packages</a>
           <a href="#about" className="mobile-link hover:text-[var(--text-main)] py-1 border-b border-[var(--border-color)]" onClick={closeMenu}>About</a>
           <a href="#contact" className="mobile-link hover:text-[var(--text-main)] py-1" onClick={closeMenu}>Contact</a>
           

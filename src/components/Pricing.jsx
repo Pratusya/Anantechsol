@@ -5,7 +5,7 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 reveal active">
-          <span className="text-blue-500 text-xs sm:text-sm font-semibold uppercase tracking-widest">Transparent Pricing</span>
+          <span className="text-blue-500 text-xs sm:text-sm font-semibold uppercase tracking-widest">Service Packages</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)] mt-4 font-heading">
             Packages scoped for every stage of growth.
           </h2>
@@ -59,10 +59,10 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
             {/* Starter */}
             <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-[var(--border-color)]">
               <div>
-                <span className="text-xs font-semibold uppercase text-[var(--text-muted)] tracking-wider">Starter Website</span>
+                <span className="text-xs font-semibold uppercase text-[var(--text-muted)] tracking-wider">Web Development</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-4xl font-extrabold text-[var(--text-main)] font-heading">₹7,999</span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">one-time payment</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Starter Website</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Starter Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">Ideal for small local businesses needing a fast, professional web presence.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -75,7 +75,7 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-clock text-purple-400 mt-0.5"></i> <span className="text-[var(--text-muted)] font-medium">7-day fast delivery</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('Web Dev - Starter (₹7,999)')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-blue-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select Starter</a>
+              <a href="#contact" onClick={() => handleSelectPackage('Web Dev - Starter')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-blue-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select Starter</a>
             </div>
 
             {/* Business (Most Popular) */}
@@ -84,10 +84,10 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                 Most Popular
               </span>
               <div>
-                <span className="text-xs font-semibold uppercase text-blue-400 tracking-wider">Business</span>
+                <span className="text-xs font-semibold uppercase text-blue-400 tracking-wider">Web Development</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-4xl font-extrabold text-[var(--text-main)] font-heading">₹17,999</span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">one-time payment</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Business</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Most Popular Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">Complete website package with content management and basic SEO setup.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -100,16 +100,16 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-clock text-purple-400 mt-0.5"></i> <span className="text-[var(--text-muted)] font-medium">10-day delivery</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('Web Dev - Business (₹17,999)')} className="w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-[var(--text-main)] font-semibold text-xs shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 transition-all">Select Business</a>
+              <a href="#contact" onClick={() => handleSelectPackage('Web Dev - Business')} className="w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-[var(--text-main)] font-semibold text-xs shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 transition-all">Select Business</a>
             </div>
 
             {/* Premium */}
             <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-[var(--border-color)]">
               <div>
-                <span className="text-xs font-semibold uppercase text-purple-400 tracking-wider">Premium Web</span>
+                <span className="text-xs font-semibold uppercase text-purple-400 tracking-wider">Web Development</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-4xl font-extrabold text-[var(--text-main)] font-heading">₹34,999</span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">one-time payment</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Premium Web</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Premium Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">Full-scale digital presence with API integrations and speed audit.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -123,7 +123,7 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-clock text-purple-400 mt-0.5"></i> <span className="text-[var(--text-muted)] font-medium">15-day delivery</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('Web Dev - Premium (₹34,999)')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-purple-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select Premium</a>
+              <a href="#contact" onClick={() => handleSelectPackage('Web Dev - Premium')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-purple-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select Premium</a>
             </div>
 
           </div>
@@ -133,10 +133,10 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
              {/* Starter Store */}
              <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-[var(--border-color)]">
               <div>
-                <span className="text-xs font-semibold uppercase text-[var(--text-muted)] tracking-wider">Starter Store</span>
+                <span className="text-xs font-semibold uppercase text-[var(--text-muted)] tracking-wider">E-Commerce</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-4xl font-extrabold text-[var(--text-main)] font-heading">₹14,999</span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">one-time payment</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Starter Store</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Starter Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">Launch online retail fast with UPI & card payments.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -149,7 +149,7 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-check text-blue-400 mt-0.5"></i> <span>3 months support</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('E-Commerce - Starter (₹14,999)')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-blue-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select Starter Store</a>
+              <a href="#contact" onClick={() => handleSelectPackage('E-Commerce - Starter')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-blue-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select Starter Store</a>
             </div>
 
             {/* Growth Store */}
@@ -158,10 +158,10 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                 Most Popular
               </span>
               <div>
-                <span className="text-xs font-semibold uppercase text-blue-400 tracking-wider">Growth Store</span>
+                <span className="text-xs font-semibold uppercase text-blue-400 tracking-wider">E-Commerce</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-4xl font-extrabold text-[var(--text-main)] font-heading">₹29,999</span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">one-time payment</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Growth Store</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Most Popular Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">High converting e-commerce store with COD, WhatsApp alerts & reviews.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -175,16 +175,16 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-check text-blue-400 mt-0.5"></i> <span>6 months technical support</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('E-Commerce - Growth (₹29,999)')} className="w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-[var(--text-main)] font-semibold text-xs shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 transition-all">Select Growth Store</a>
+              <a href="#contact" onClick={() => handleSelectPackage('E-Commerce - Growth')} className="w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-[var(--text-main)] font-semibold text-xs shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 transition-all">Select Growth Store</a>
             </div>
 
             {/* Enterprise Store */}
             <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-[var(--border-color)]">
               <div>
-                <span className="text-xs font-semibold uppercase text-purple-400 tracking-wider">Enterprise Store</span>
+                <span className="text-xs font-semibold uppercase text-purple-400 tracking-wider">E-Commerce</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-4xl font-extrabold text-[var(--text-main)] font-heading">₹59,999</span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">one-time payment</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Enterprise Store</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Enterprise Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">Custom Android app, multi-vendor support & dedicated management.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -197,7 +197,7 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-check text-purple-400 mt-0.5"></i> <span>1 year support + Dedicated manager</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('E-Commerce - Enterprise (₹59,999)')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-purple-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select Enterprise Store</a>
+              <a href="#contact" onClick={() => handleSelectPackage('E-Commerce - Enterprise')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-purple-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select Enterprise Store</a>
             </div>
           </div>
 
@@ -206,10 +206,10 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
             {/* Basic */}
             <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-[var(--border-color)]">
               <div>
-                <span className="text-xs font-semibold uppercase text-[var(--text-muted)] tracking-wider">Basic Tier</span>
+                <span className="text-xs font-semibold uppercase text-[var(--text-muted)] tracking-wider">School ERP</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-4xl font-extrabold text-[var(--text-main)] font-heading">₹22,000</span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">/ year + GST</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Basic Tier</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Starter Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">ShikshaNetra core ERP with student & fee modules.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -221,7 +221,7 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-check text-blue-400 mt-0.5"></i> <span>Free data migration & staff training</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('School ERP - Basic (₹22,000/yr)')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-blue-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select Basic ERP</a>
+              <a href="#contact" onClick={() => handleSelectPackage('School ERP - Basic')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-blue-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select Basic ERP</a>
             </div>
 
             {/* Super (Recommended) */}
@@ -230,10 +230,10 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                 Recommended
               </span>
               <div>
-                <span className="text-xs font-semibold uppercase text-purple-400 tracking-wider">Super Plan</span>
+                <span className="text-xs font-semibold uppercase text-purple-400 tracking-wider">School ERP</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-4xl font-extrabold text-[var(--text-main)] font-heading">₹35,000</span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">/ year + usage billing</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Super Plan</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Most Popular Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">Includes WhatsApp notifications, custom Play Store app & dedicated account manager.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -245,16 +245,16 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-check text-purple-400 mt-0.5"></i> <span>Custom school branding & Play Store App</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('School ERP - Super (₹35,000/yr)')} className="w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-[var(--text-main)] font-semibold text-xs shadow-lg shadow-purple-600/30 hover:shadow-purple-500/50 transition-all">Select Super Plan</a>
+              <a href="#contact" onClick={() => handleSelectPackage('School ERP - Super')} className="w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-[var(--text-main)] font-semibold text-xs shadow-lg shadow-purple-600/30 hover:shadow-purple-500/50 transition-all">Select Super Plan</a>
             </div>
 
             {/* Enterprise */}
             <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-[var(--border-color)]">
               <div>
-                <span className="text-xs font-semibold uppercase text-indigo-400 tracking-wider">Multi-Branch Enterprise</span>
+                <span className="text-xs font-semibold uppercase text-indigo-400 tracking-wider">School ERP</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Custom Quote</span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">tailored to trust size</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Multi-Branch Enterprise</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Enterprise Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">For educational trusts operating multiple school branches.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -265,7 +265,7 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-check text-indigo-400 mt-0.5"></i> <span>SLA guarantee & 24/7 dedicated support</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('School ERP - Enterprise (Custom Quote)')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-indigo-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Request Enterprise Quote</a>
+              <a href="#contact" onClick={() => handleSelectPackage('School ERP - Enterprise')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-indigo-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Request Enterprise Quote</a>
             </div>
           </div>
 
@@ -274,10 +274,10 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
              {/* Small Business */}
              <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-[var(--border-color)]">
               <div>
-                <span className="text-xs font-semibold uppercase text-[var(--text-muted)] tracking-wider">Small Business</span>
+                <span className="text-xs font-semibold uppercase text-[var(--text-muted)] tracking-wider">HR Software</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-4xl font-extrabold text-[var(--text-main)] font-heading">₹9,999</span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">/ year</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Small Business</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Starter Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">Replace paper attendance and spreadsheets for small teams.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -288,7 +288,7 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-check text-emerald-400 mt-0.5"></i> <span>Digital salary slip generation</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('HR Software - Small Business (₹9,999/yr)')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-emerald-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select HR Starter</a>
+              <a href="#contact" onClick={() => handleSelectPackage('HR Software - Small Business')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-emerald-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select HR Starter</a>
             </div>
 
             {/* Business (Most Popular) */}
@@ -297,10 +297,10 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                 Most Popular
               </span>
               <div>
-                <span className="text-xs font-semibold uppercase text-emerald-400 tracking-wider">Business HR</span>
+                <span className="text-xs font-semibold uppercase text-emerald-400 tracking-wider">HR Software</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-4xl font-extrabold text-[var(--text-main)] font-heading">₹19,999</span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">/ year</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Business HR</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Most Popular Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">Comprehensive staff portal, PF/ESI tracking & performance metrics.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -311,16 +311,16 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-check text-emerald-400 mt-0.5"></i> <span>Priority technical support</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('HR Software - Business (₹19,999/yr)')} className="w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-[var(--text-main)] font-semibold text-xs shadow-lg shadow-emerald-600/30 hover:shadow-emerald-500/50 transition-all">Select Business HR</a>
+              <a href="#contact" onClick={() => handleSelectPackage('HR Software - Business')} className="w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-[var(--text-main)] font-semibold text-xs shadow-lg shadow-emerald-600/30 hover:shadow-emerald-500/50 transition-all">Select Business HR</a>
             </div>
 
             {/* Enterprise */}
             <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-[var(--border-color)]">
               <div>
-                <span className="text-xs font-semibold uppercase text-teal-400 tracking-wider">Enterprise HR</span>
+                <span className="text-xs font-semibold uppercase text-teal-400 tracking-wider">HR Software</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-4xl font-extrabold text-[var(--text-main)] font-heading">₹39,999</span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">/ year</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Enterprise HR</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Enterprise Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">Biometric integration, multi-branch, custom modules & manager.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -331,7 +331,7 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-check text-teal-400 mt-0.5"></i> <span>Dedicated account manager</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('HR Software - Enterprise (₹39,999/yr)')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-teal-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select Enterprise HR</a>
+              <a href="#contact" onClick={() => handleSelectPackage('HR Software - Enterprise')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-teal-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select Enterprise HR</a>
             </div>
           </div>
 
@@ -340,10 +340,10 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
              {/* MVP Build */}
              <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-[var(--border-color)]">
               <div>
-                <span className="text-xs font-semibold uppercase text-[var(--text-muted)] tracking-wider">MVP Build</span>
+                <span className="text-xs font-semibold uppercase text-[var(--text-muted)] tracking-wider">Custom Dev</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-4xl font-extrabold text-[var(--text-main)] font-heading">₹24,999<span className="text-lg font-normal">+</span></span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">starting price</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">MVP Build</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Starter Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">Build and test core product ideas with real users quickly.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -354,7 +354,7 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-check text-blue-400 mt-0.5"></i> <span>3 months technical support</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('Custom Dev - MVP Build (₹24,999+)')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-blue-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select MVP Build</a>
+              <a href="#contact" onClick={() => handleSelectPackage('Custom Dev - MVP Build')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-blue-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Select MVP Build</a>
             </div>
 
             {/* Full Product (Most Popular) */}
@@ -363,10 +363,10 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                 Most Popular
               </span>
               <div>
-                <span className="text-xs font-semibold uppercase text-purple-400 tracking-wider">Full Product</span>
+                <span className="text-xs font-semibold uppercase text-purple-400 tracking-wider">Custom Dev</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-4xl font-extrabold text-[var(--text-main)] font-heading">₹59,999<span className="text-lg font-normal">+</span></span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">starting price</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Full Product</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Most Popular Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">Cross-platform web + mobile system with premium UI & integrations.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -379,16 +379,16 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-check text-purple-400 mt-0.5"></i> <span>6 months dedicated support</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('Custom Dev - Full Product (₹59,999+)')} className="w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-[var(--text-main)] font-semibold text-xs shadow-lg shadow-purple-600/30 hover:shadow-purple-500/50 transition-all">Select Full Product</a>
+              <a href="#contact" onClick={() => handleSelectPackage('Custom Dev - Full Product')} className="w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-[var(--text-main)] font-semibold text-xs shadow-lg shadow-purple-600/30 hover:shadow-purple-500/50 transition-all">Select Full Product</a>
             </div>
 
             {/* Enterprise Custom */}
             <div className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-[var(--border-color)]">
               <div>
-                <span className="text-xs font-semibold uppercase text-indigo-400 tracking-wider">Enterprise Custom</span>
+                <span className="text-xs font-semibold uppercase text-indigo-400 tracking-wider">Custom Dev</span>
                 <div className="mt-4 mb-6">
-                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Custom Quote</span>
-                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">tailored to specifications</span>
+                  <span className="text-3xl font-extrabold text-[var(--text-main)] font-heading">Enterprise Custom</span>
+                  <span className="text-[var(--text-muted)] text-xs block mt-1 font-medium">Enterprise Package</span>
                 </div>
                 <p className="text-[var(--text-muted)] text-xs mb-6 pb-6 border-b border-[var(--border-color)]">Dedicated engineering team, source code handover & AI/ML integration.</p>
                 <ul className="space-y-3 text-xs text-[var(--text-muted)] mb-8">
@@ -400,7 +400,7 @@ const Pricing = ({ activeTab, switchPricingTab, handleSelectPackage }) => {
                   <li className="flex items-start gap-2.5"><i className="fa-solid fa-check text-indigo-400 mt-0.5"></i> <span>1 year enterprise support</span></li>
                 </ul>
               </div>
-              <a href="#contact" onClick={() => handleSelectPackage('Custom Dev - Enterprise (Custom Quote)')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-indigo-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Request Enterprise Custom</a>
+              <a href="#contact" onClick={() => handleSelectPackage('Custom Dev - Enterprise')} className="w-full text-center py-3 rounded-xl border border-[var(--border-color)] hover:border-indigo-500 text-[var(--text-main)] hover:text-[var(--text-main)] font-semibold text-xs transition-all">Request Enterprise Custom</a>
             </div>
           </div>
         </div>
